@@ -7,6 +7,7 @@ resource "aws_lb" "wordpress_lb" {
   subnets            = module.vpc.public_subnets
   enable_deletion_protection = false
 
+
   tags = {
     Name = "wordpress-lb"
   }
