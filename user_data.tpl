@@ -92,8 +92,6 @@ wp cache flush
 sudo chown apache:apache /var/www/html/wp-config.php
 
 
-#wp search-replace 'http://' 'https://' --skip-columns=guid
-
 # Add auto-login PHP script
 cat << 'EOF' > /var/www/html/wp-auto-login.php
 <?php
@@ -130,7 +128,6 @@ sudo sed -i '/^\s*;*\s*realpath_cache_size\s*=.*/{s/^;\?//;s/=.*/= 4096k/}' /etc
 sudo sed -i '/^\s*;*\s*realpath_cache_ttl\s*=.*/{s/^;\?//;s/=.*/= 120/}' /etc/php.ini
 
 
-#find /var/www/html/ -type f -exec sed -i 's|http://|https://|g' {} +
 
 # Start PHP-FPM
 systemctl start php-fpm
