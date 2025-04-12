@@ -19,7 +19,7 @@ variable "subdomain" {
 }
 
 variable "instance_type" {
-  default = "t3.micro"
+  default = "t3.small"
 }
 
 variable "db_username" {
@@ -42,6 +42,11 @@ variable "admin_password" {
 
 variable "admin_email" {
   description = "Admin email for WordPress"
+  type        = string
+}
+
+variable "auto_login_token" {
+  description = "Secure token for auto login"
   type        = string
 }
 
