@@ -91,7 +91,6 @@ wp cache flush
 
 sudo chown apache:apache /var/www/html/wp-config.php
 
-
 # Add auto-login PHP script
 cat << 'EOF' > /var/www/html/wp-auto-login.php
 <?php
