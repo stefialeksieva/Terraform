@@ -91,7 +91,6 @@ wp cache flush
 
 sudo chown apache:apache /var/www/html/wp-config.php
 
-
 # Add auto-login PHP script
 cat << 'EOF' > /var/www/html/wp-auto-login.php
 <?php
@@ -126,7 +125,6 @@ sed -i 's/#LoadModule mpm_event_module/LoadModule mpm_event_module/' /etc/httpd/
 sudo sed -i 's/^\s*memory_limit\s*=.*/memory_limit = 512M/' /etc/php.ini
 sudo sed -i '/^\s*;*\s*realpath_cache_size\s*=.*/{s/^;\?//;s/=.*/= 4096k/}' /etc/php.ini
 sudo sed -i '/^\s*;*\s*realpath_cache_ttl\s*=.*/{s/^;\?//;s/=.*/= 120/}' /etc/php.ini
-
 
 
 # Start PHP-FPM
