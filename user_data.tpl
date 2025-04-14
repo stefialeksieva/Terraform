@@ -128,7 +128,6 @@ sudo sed -i '/^\s*;*\s*realpath_cache_size\s*=.*/{s/^;\?//;s/=.*/= 4096k/}' /etc
 sudo sed -i '/^\s*;*\s*realpath_cache_ttl\s*=.*/{s/^;\?//;s/=.*/= 120/}' /etc/php.ini
 
 
-
 # Start PHP-FPM
 systemctl start php-fpm
 systemctl enable php-fpm
