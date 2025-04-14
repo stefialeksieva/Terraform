@@ -49,42 +49,44 @@ This infrastructure includes:
 
 ## ✅ Best Practices and Standards Used
 
-This project follows AWS and Terraform best practices to ensure reliability, security, and maintainability:
+This project adheres to AWS and Terraform best practices for building a secure, scalable, and maintainable WordPress deployment:
 
 ### 🔒 Security
-- Principle of Least Privilege for IAM roles and SSM access.
-- Security Groups are tightly scoped (e.g., only ALB can reach EC2 on HTTP/HTTPS).
-- Secrets (DB credentials) are managed via variables, and SSM Parameter Store can be integrated for better secret handling.
-- SSL/TLS encryption enabled via **ACM certificates** and HTTPS listeners on ALB.
+- **Principle of Least Privilege** applied through tightly scoped security groups.
+- **Network isolation** with dedicated security groups for EC2, RDS, and ALB.
+- **Encrypted HTTPS traffic** using ACM certificates and ALB listeners.
 
 ### ☁️ High Availability & Scalability
-- EC2 instances are in an **Auto Scaling Group** across multiple Availability Zones.
-- **ALB** ensures traffic distribution and failover.
-- **RDS Multi-AZ deployment** can be enabled for production workloads.
+- **EC2 Auto Scaling Group** across multiple Availability Zones ensures fault tolerance.
+- **RDS Multi-AZ** deployment provides high availability for the database layer.
+- **Application Load Balancer (ALB)** distributes incoming traffic to healthy instances.
 
 ### 🛠️ Infrastructure as Code (IaC)
-- Entire setup is reproducible and version-controlled using **Terraform**.
-- Separated modules and logical files (VPC, EC2, RDS, ALB, etc.) for clarity and maintainability.
-- Variable usage and outputs make the code reusable and adaptable.
+- Fully managed using **Terraform**, enabling reproducible, consistent deployments.
+- **Logical separation** of infrastructure into dedicated files (e.g., `ec2.tf`, `rds.tf`, `vpc.tf`) for modularity and readability.
+- Use of **variables** and **outputs** for better reusability and integration.
 
 ### 📊 Monitoring & Logging
-- **CloudWatch Alarms** are configured to monitor EC2 CPU utilization.
-- **SSM Agent** and **CloudWatch Logs** collect EC2 instance logs.
-- Outputs include Log Group and Alarm ARN for integration with alerting systems.
+- **CloudWatch Alarms** configured for EC2 instance CPU usage.
+- **CloudWatch Logs** integrated via **SSM Document**, allowing centralized logging.
 
 ### 🔁 Automation & Bootstrapping
-- **User data** script automatically installs and configures WordPress on launch.
-- Infrastructure is self-healing via Auto Scaling and Load Balancer health checks.
+- **User data script** (`user_data.tpl`) automates WordPress installation and configuration on EC2 instances.
+- EC2 instances are **self-healing** through health checks and auto scaling.
 
 ### 🌍 Domain & Routing
-- Uses **Route 53** for DNS management.
-- DNS validation with ACM ensures seamless SSL certificate provisioning.
-
-### 📦 Modularity
-- **VPC** setup uses a Terraform module for reusable networking.
-- Future modules (e.g., for backups or WAF) can easily be added.
+- **Route 53** used for DNS management and domain resolution.
+- **DNS validation** automates SSL certificate provisioning via ACM.
 
 ---
 
-These practices make the deployment production-ready, secure by default, and easy to manage or extend.
+## 🔮 Future Improvements
+
+The following enhancements could further optimize and harden the infrastructure:
+
+- Store sensitive values (e.g., DB passwords) in **SSM Parameter Store** or **Secrets Manager**.
+- Add a **WAF (Web Application Firewall)** to the ALB for enhanced security.
+- Integrate **backup policies** for RDS and EC2 volume snapshots.
+- Use **Terraform modules** for more reusable and shareable components.
+
 
